@@ -1,3 +1,56 @@
-<p>
-  carte works!
-</p>
+<div class="row justify-content-center">
+  <div id="cartemonde" class="mt-4"></div>
+  <div class="ml-5 mt-4">
+      <h3>Ajouter un pays :</h3>
+
+      <form [formGroup]="ajouterPaysForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="nom">Nom du pays</label>
+          <input
+            type="text"
+            name="nom"
+            class="form-control"
+            formControlName="nom"
+          >
+        </div>
+        <div class="form-group">
+          <label>Type de voyage</label>
+          <select>
+            <option>A visiter</option>
+            <option>Déjà visité</option>
+          </select>
+          <input
+            type="select"
+            name="etat"
+            class="form-control col-4"
+            formControlName="etat"
+          >
+        </div>
+        <div class="form-group">
+          <label for="latitude">Latitude</label>
+          <input
+            type="text"
+            name="latitude"
+            class="form-control"
+            formControlName="latitude"
+          >
+        </div>
+        <div class="form-group">
+          <label for="longitude">Longitude</label>
+          <input
+            type="text"
+            name="longitude"
+            class="form-control"
+            formControlName="longitude"
+          >
+        </div>
+        <button
+          class="btn btn-success"
+          type="submit"
+          [disabled]="ajouterChienForm.invalid"
+        >
+          Envoyer
+        </button>
+      </form>
+  </div>
+</div>
