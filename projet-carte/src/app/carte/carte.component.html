@@ -15,15 +15,18 @@
         </div>
         <div class="form-group">
           <label>Type de voyage</label>
-          <select>
-            <option>A visiter</option>
-            <option>Déjà visité</option>
+          <select class="form-control" name="etat" formControlName="etat">
+            <option value="aVisiter">A visiter</option>
+            <option value="dejaVisite">Déjà visité</option>
           </select>
+        </div>
+        <div class="form-group">
+          <label for="longitude">Longitude</label>
           <input
-            type="select"
-            name="etat"
-            class="form-control col-4"
-            formControlName="etat"
+            type="text"
+            name="longitude"
+            class="form-control"
+            formControlName="longitude"
           >
         </div>
         <div class="form-group">
@@ -35,19 +38,10 @@
             formControlName="latitude"
           >
         </div>
-        <div class="form-group">
-          <label for="longitude">Longitude</label>
-          <input
-            type="text"
-            name="longitude"
-            class="form-control"
-            formControlName="longitude"
-          >
-        </div>
         <button
           class="btn btn-success"
           type="submit"
-          [disabled]="ajouterChienForm.invalid"
+          [disabled]="ajouterPaysForm.invalid"
         >
           Envoyer
         </button>

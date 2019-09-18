@@ -9,6 +9,7 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { CarteComponent } from './carte/carte.component';
 import { TableauComponent } from './tableau/tableau.component';
 import { DetailComponent } from './detail/detail.component';
+import { CarteService } from 'src/app/services/carte.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,9 @@ import { DetailComponent } from './detail/detail.component';
     AppRoutingModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    CarteService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
