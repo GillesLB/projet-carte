@@ -21,6 +21,8 @@ export class CarteComponent implements OnInit {
 
   listePays: Pays[] = [];
 
+  projetcarte;
+
   constructor(
     public carteService: CarteService,
   ) { }
@@ -36,19 +38,30 @@ export class CarteComponent implements OnInit {
       longitude: new FormControl('', [Validators.required, Validators.pattern(this.COORDONNEES_REGEX)]),
     });
 
+    this.voirCarte();
+  }
+
+  voirCarte() {
     // Déclaration de la carte avec les coordonnées du centre et le niveau de zoom.
-    const projetcarte = L.map('cartemonde').setView([47.207527, -1.546276], 2);
+    this.projetcarte = L.map('cartemonde').setView([47.207527, -1.546276], 2);
 
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       attribution: 'Projet Carte'
-    }).addTo(projetcarte);
+    }).addTo(this.projetcarte);
 
     const origineIcon = L.icon({iconUrl: 'assets/images/origine-icon.png'});
     const dejaFaitIcon = L.icon({iconUrl: 'assets/images/deja-fait-icon.png'});
     const aFaireIcon = L.icon({iconUrl: 'assets/images/a-faire-icon.png'});
 
-    L.marker([47.207527, -1.546276], {icon: origineIcon}).bindPopup('CSMSI - Atlantica').addTo(projetcarte).openPopup();
-    this.bouclerPays(dejaFaitIcon, aFaireIcon, projetcarte);
+    L.marker([47.207527, -1.546276], {icon: origineIcon}).bindPopup('CSMSI - Atlantica').addTo(this.projetcarte).openPopup();
+    this.bouclerPays(dejaFaitIcon, aFaireIcon, this.projetcarte);
+  }
+
+  mettreAJourCarte() {
+    // Effacer la carte existante
+    this.projetcarte.remove();
+    // Afficher la carte avec le nouveau pays
+    this.voirCarte();
   }
 
   bouclerPays(dejaFaitIcon, aFaireIcon, projetcarte) {
@@ -71,9 +84,10 @@ export class CarteComponent implements OnInit {
     const latitude = this.ajouterPaysForm.get('latitude').value;
     const longitude = this.ajouterPaysForm.get('longitude').value;
     const paysAAjouter = new Pays(paysId, nom, etat, latitude, longitude);
-    console.log('paa : ', paysAAjouter);
-    // this.liste.push(chienAAjouter);
-    // this.store.dispatch(new AjouterChien(chienAAjouter));
+    this.listePays.push(paysAAjouter);
+    this.carteService.listePays = this.listePays;
+    this.mettreAJourCarte();
     this.ajouterPaysForm.reset();
   }
+
 }

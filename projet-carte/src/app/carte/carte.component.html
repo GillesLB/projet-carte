@@ -1,8 +1,10 @@
 <div class="row justify-content-center">
-  <div id="cartemonde" class="mt-4"></div>
+  <!-- Carte -->
+  <div id="cartemonde" class="my-4"></div>
+  <!-- Formulaire -->
   <div class="ml-5 mt-4">
+    <div class="border px-3 pb-3">
       <h3>Ajouter un pays :</h3>
-
       <form [formGroup]="ajouterPaysForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="nom">Nom du pays</label>
@@ -14,7 +16,7 @@
           >
         </div>
         <div class="form-group">
-          <label>Type de voyage</label>
+          <label>Catégorie de pays</label>
           <select class="form-control" name="etat" formControlName="etat">
             <option value="aVisiter">A visiter</option>
             <option value="dejaVisite">Déjà visité</option>
@@ -46,5 +48,24 @@
           Envoyer
         </button>
       </form>
+    </div>
+
+
+    <!-- Légende -->
+    <div class="my-5">
+      <b>Légende :</b>
+      <div class="row align-bottom pt-4 pl-3">
+        <img class="col-2" src="assets/images/origine-icon.png" alt="icone indiquant l'\origine des voyages" />
+        <p class="align-bottom"> : centre du monde</p>
+      </div>
+      <div class="row align-bottom pt-2 pl-3">
+        <img class="col-2" src="assets/images/deja-fait-icon.png" alt="icone indiquant les pays déjà visités" />
+        <p class="align-bottom"> : pays déjà visités</p>
+      </div>
+      <div class="row align-bottom pt-2 pl-3">
+        <img class="col-2" src="assets/images/a-faire-icon.png" alt="icone indiquant les pays à visiter" />
+        <p class="align-bottom"> : pays à visiter</p>
+      </div>
+    </div>
   </div>
 </div>

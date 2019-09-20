@@ -1,5 +1,3 @@
-import { Stream } from 'stream';
-
 export interface IPays {
   paysId: number;
   nom: string;

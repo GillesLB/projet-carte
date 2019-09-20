@@ -1,3 +1,54 @@
-<p>
-  tableau works!
-</p>
+<h2 class="text-center mt-2">Résumé de mes différents voyages ou envies :</h2>
+<br>
+<div class="row justify-content-center">
+
+  <table class="table table-striped text-center">
+    <thead class="fond">
+      <tr>
+        <th scope="col" class="col-2">id</th>
+        <th scope="col">Pays</th>
+        <th scope="col">Catégorie</th>
+        <th scope="col" class="col-2">Détail</th>
+        <th scope="col" class="col-2">Supprimer</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let pays of listePays | paginate: { itemsPerPage: 6, currentPage: p }">
+      <tr>
+        <th scope="row">{{pays.paysId}}</th>
+        <td>{{pays.nom}}</td>
+        <td>
+          <span *ngIf="pays.etat === 'dejaVisite'">
+            Pays déjà visité
+          </span>
+          <span *ngIf="pays.etat === 'aVisiter'">
+            Pays à visiter (un jour)
+          </span>
+        </td>
+        <td>
+          <a [routerLink]="['/tableau', pays.paysId]">
+            <button
+              type="button"
+              class="btn btn-primary btn-sm"
+            >
+            <i class="fas fa-plane-departure"></i>
+            </button>
+          </a>
+        </td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-danger btn-sm"
+            (click)='onSupprimer(pays)'
+          >
+          <i class="far fa-trash-alt"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="w-100"></div>
+
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+</div>

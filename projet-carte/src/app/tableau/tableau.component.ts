@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { Pays } from 'src/app/pays.modele';
+import { TableauService } from 'src/app/services/tableau.service';
 
 @Component({
   selector: 'app-tableau',
@@ -7,9 +11,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TableauComponent implements OnInit {
 
-  constructor() { }
+  listePays: Pays[] = [];
+
+  constructor(
+    private tableauService: TableauService,
+    private router: Router,
+  ) { }
 
   ngOnInit() {
+    this.listePays = this.tableauService.listePays;
+  }
+
+  onSupprimer(pays) {
+    this.tableauService.supprimer(pays);
   }
 
 }
