@@ -2,26 +2,49 @@
 <br>
 <div class="row justify-content-center">
 
-  <table class="table table-striped text-center">
+  <!-- Erreur -->
+  <div *ngIf="isLoading === false && !listePays" class="my-4">
+      Une erreur est survenue : veuillez réessayer ultérieurement
+  </div>
+
+  <!-- Loader -->
+  <div *ngIf="isLoading === true" class="hauteur mt-3 justify-content-center text-center">
+    <div
+      class="spinner-border text-success my-4"
+      role="status"
+    >
+    </div>
+    <div>En chargement ...</div>
+  </div>
+
+  <!-- Tableau -->
+  <table *ngIf="isLoading === false && listePays" class="table table-striped text-center">
     <thead class="fond">
       <tr>
-        <th scope="col" class="col-2">id</th>
-        <th scope="col">Pays</th>
-        <th scope="col">Catégorie</th>
+        <th scope="col" class="col-2">Pays</th>
+        <th scope="col" class="col-3">Catégorie</th>
+        <th scope="col" class="col-3">Date de visite</th>
         <th scope="col" class="col-2">Détail</th>
         <th scope="col" class="col-2">Supprimer</th>
       </tr>
     </thead>
     <tbody *ngFor="let pays of listePays | paginate: { itemsPerPage: 6, currentPage: p }">
       <tr>
-        <th scope="row">{{pays.paysId}}</th>
-        <td>{{pays.nom}}</td>
+        <th scope="row">{{pays.nom}}</th>
         <td>
           <span *ngIf="pays.etat === 'dejaVisite'">
             Pays déjà visité
           </span>
           <span *ngIf="pays.etat === 'aVisiter'">
             Pays à visiter (un jour)
+          </span>
+        </td>
+        <td>
+          <span *ngIf="pays.date !== ''">
+            {{pays.date}}
+          </span>
+          <span *ngIf="pays.date === ''">
+            N/A
           </span>
         </td>
         <td>
@@ -49,6 +72,10 @@
 
   <div class="w-100"></div>
 
-  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  <pagination-controls
+    *ngIf="isLoading === false && listePays"
+    (pageChange)="p = $event"
+  >
+  </pagination-controls>
 
 </div>

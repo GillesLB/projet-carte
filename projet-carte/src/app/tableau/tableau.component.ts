@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { Pays } from 'src/app/pays.modele';
 import { TableauService } from 'src/app/services/tableau.service';
@@ -13,13 +12,17 @@ export class TableauComponent implements OnInit {
 
   listePays: Pays[] = [];
 
+  isLoading = false;
+
   constructor(
     private tableauService: TableauService,
-    private router: Router,
   ) { }
 
   ngOnInit() {
+    this.isLoading = true;
+    this.tableauService.getListePays();
     this.listePays = this.tableauService.listePays;
+    this.isLoading = false;
   }
 
   onSupprimer(pays) {

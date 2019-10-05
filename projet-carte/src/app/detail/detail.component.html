@@ -1,3 +1,59 @@
-<p>
-  detail works!
-</p>
+<div class="row justify-content-center">
+  <div class="border border-secondary fond col-6 mt-5">
+
+    <div class="row justify-content-center mt-2 mb-5">
+      <h4 class="font-weight-bold">Description de mon voyage :</h4>
+    </div>
+
+    <div class="ml-3 mb-2 taille-texte">
+      <span class="font-weight-bold">Nom de ce pays : {{listePays[paysId].nom}}</span>
+    </div>
+<!--
+    <div class="ml-3 mb-2 taille-texte">
+      <span class="font-weight-bold">Adresse : </span>{{listeRestaurants[id].adresse}}
+    </div>
+
+    <div class="ml-3 mb-2 taille-texte">
+      <span class="font-weight-bold">Date de visite : </span>{{listeRestaurants[id].dateDerniereVisite}}
+    </div>
+
+    <div class="ml-3 mb-2 taille-texte align">
+      <span class="font-weight-bold">Note : </span>
+      <span *ngIf="!listeRestaurants[id].note" class="font-italic"> Pas encore de note ...</span>
+      <span *ngIf="listeRestaurants[id].note"></span>{{listeRestaurants[id].note}}
+    </div>
+
+    <div class="ml-3 mb-4 taille-texte">
+      <span class="font-weight-bold">Nombre de visite : </span>{{listeRestaurants[id].nombreVisite}}
+    </div>
+
+    <div class="ml-3 taille-texte">
+
+      <div class="font-weight-bold mb-2">Commentaire(s) :</div>
+
+        <div
+          *ngIf="!listeRestaurants[id].nombreCommentaire"
+          class="font-italic mb-4"
+        >
+          Pas encore de commentaire ...
+        </div>
+
+      <div
+        *ngIf="listeRestaurants[id].nombreCommentaire"
+      >
+        <div
+          *ngFor="let commentaire of listeRestaurants[id].commentaire"
+          class="mb-2"
+        >
+          <ul>
+            <li><span class="font-weight-bold">Auteur : </span>{{commentaire.auteur}}</li>
+            <li><span class="font-weight-bold">Commentaire : </span>{{commentaire.texte}}</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  -->
+  </div>
+</div>
